@@ -5,8 +5,8 @@ import tink.CoreApi;
 
 class HlSource extends Generator<Chunk, Error> {
 	function new(target:WrappedReadStream) {
-		super(Future.async(cb -> {
-			target.read().handle(function(o) cb(switch o {
+		super(Future.async(function(cb) {
+			target.read().handle(function(o) return cb(switch o {
 				case Success(null):
 					End;
 				case Success(chunk):
