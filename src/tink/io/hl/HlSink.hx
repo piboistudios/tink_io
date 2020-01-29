@@ -17,7 +17,7 @@ class HlSink extends SinkBase<Error, Noise> {
 	}
 
 	override public function consume<EIn>(source:tink.streams.Stream<Chunk, EIn>, options:PipeOptions):Future<PipeResult<EIn, Error, Noise>> {
-		var ret = source.forEach(function(c) target.write(c).map(function(w) switch w {
+		var ret = source.forEach(function(c) return target.write(c).map(function(w) return switch w {
 			case Success(true):
 				Resume;
 			case Success(false):
